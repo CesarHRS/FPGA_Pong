@@ -1,0 +1,18 @@
+module racket(
+    input clk,
+    input reset,
+    input up,        // Mver para cima
+    input down,      // Mover para baixo
+    output reg [9:0] racket_y // Posição Y da raquete
+);
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            racket_y <= 200; // Posição inicial da raquete
+        end else begin
+            if (up && racket_y > 0)
+                racket_y <= racket_y - 1;
+            if (down && racket_y < 440)
+                racket_y <= racket_y + 1;
+        end
+    end
+endmodule

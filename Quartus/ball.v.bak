@@ -1,0 +1,49 @@
+module ball(
+    input clk,
+    input reset,
+    input [9:0] raquete_x,   // Posição da raquete no eixo X
+    input [9:0] raquete_y,   // Posição da raquete no eixo Y
+    output reg [9:0] bola_x, // Posição da bola no eixo X
+    output reg [9:0] bola_y, // Posição da bola no eixo Y
+    output reg [1:0] bola_dir // Direção da bola: 00 = cima-esquerda, 01 = cima-direita, 10 = baixo-esquerda, 11 = baixo-direita
+);
+    reg [1:0] direcao;
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            bola_x <= 320; // Posição inicial da bola
+            bola_y <= 240;
+            direcao <= 2'b11; // Direção inicial (baixo-direita)
+        end else begin
+            // Movimento da bola baseado na direção
+            case(direcao)
+                2'b00: begin
+                    bola_x <= bola_x - 1;
+                    bola_y <= bola_y - 1;
+                end
+                2'b01: begin
+                    bola_x <= bola_x + 1;
+                    bola_y <= bola_y - 1;
+                end
+                2'b10: begin
+                    bola_x <= bola_x - 1;
+                    bola_y <= bola_y + 1;
+                end
+                2'b11: begin
+                    bola_x <= bola_x + 1;
+                    bola_y <= bola_y + 1;
+                end
+            endcase
+
+            // Colisão com as bordas superiores e inferiores
+            if (bola_y <= 0)
+                direcao[1] <= ~direcao[1]; // Inverte a direção vertical
+            if (bola_y >= 479)
+                direcao[1] <= ~direcao[1]; // Inverte a direção vertical
+
+            // Colisão com as raquetes (simplificado)
+            if (bola_x <= raquete_x && bola_y >= raquete_y && bola_y <= (raquete_y + 40))
+                direcao[0] <= ~direcao[0]; // Inverte a direção horizontal
+        end
+    end
+endmodule
