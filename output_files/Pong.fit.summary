@@ -1,0 +1,16 @@
+Fitter Status : Successful - Thu Sep 26 10:22:58 2024
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : Pong
+Top-level Entity Name : pong
+Family : Cyclone II
+Device : EP2C5F256C6
+Timing Models : Final
+Total logic elements : 225 / 4,608 ( 5 % )
+    Total combinational functions : 223 / 4,608 ( 5 % )
+    Dedicated logic registers : 82 / 4,608 ( 2 % )
+Total registers : 82
+Total pins : 20 / 158 ( 13 % )
+Total virtual pins : 0
+Total memory bits : 0 / 119,808 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 26 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )
