@@ -12,4 +12,4 @@
 
 # Entradas e Saídas
 
-![](img\entrada_e_saida.jpg)
+![](\img\entrada_e_saida.jpg)
